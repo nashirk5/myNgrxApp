@@ -8,6 +8,7 @@ import { HeaderComponent } from './_core/header/header.component';
 import { FooterComponent } from './_core/footer/footer.component';
 import { PageNotFoundComponent } from './_core/page-not-found/page-not-found.component';
 import { LayoutComponent } from './_core/layout/layout.component';
+import { SharedModule } from './_shared/material/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LayoutComponent } from './_core/layout/layout.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
