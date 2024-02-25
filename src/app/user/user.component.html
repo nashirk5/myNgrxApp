@@ -1,1 +1,7 @@
-<p>user works!</p>
+<ng-container *ngIf="user$">
+    <app-user-list [userData]="user$ | async"></app-user-list>
+</ng-container>
+
+<ng-container *ngIf="!user$">
+    <h2>No data found</h2>
+</ng-container>

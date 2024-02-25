@@ -1,1 +1,7 @@
-<p>post works!</p>
+<ng-container *ngIf="post$">
+    <app-post-list [postData]="post$ | async"></app-post-list>
+</ng-container>
+
+<ng-container *ngIf="!post$">
+    <h2>No data found</h2>
+</ng-container>
