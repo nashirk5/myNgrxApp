@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PostInterface } from 'src/app/_interface/post.interface';
 
 @Component({
@@ -8,6 +8,13 @@ import { PostInterface } from 'src/app/_interface/post.interface';
 })
 export class PostListComponent {
 
-  @Input() postData: PostInterface[] | null | undefined
+  @Input() postData!: PostInterface[] | null;
+  @Output() deletePostId = new EventEmitter<number>();
+
+  deletePost(post: PostInterface) {
+    if (confirm(`Are you sure, do you want to delete ${post.title}`)) {
+      this.deletePostId.emit(post?.id);
+    }
+  }
 
 }

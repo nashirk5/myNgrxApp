@@ -10,11 +10,24 @@ import { PostInterface } from '../_interface/post.interface';
 })
 export class PostComponent implements OnInit {
 
-  post$: Observable<PostInterface[]> | undefined
+  post$: Observable<PostInterface[]> | undefined;
+  isPostEdit: boolean = false;
 
   constructor(private postSrv: PostService) { }
 
   ngOnInit(): void {
     this.post$ = this.postSrv.getPost();
+
+    setTimeout(() => {
+      this.post$ = this.postSrv.createPost({ id: 7, title: 'Test' })
+    }, 5000);
+
+    setTimeout(() => {
+      this.post$ = this.postSrv.updatePost({ id: 7, title: 'Update' })
+    }, 8000);
+  }
+
+  deletePost(postId: number) {
+    this.post$ = this.postSrv.deletePost(postId);
   }
 }
