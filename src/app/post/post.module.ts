@@ -6,6 +6,7 @@ import { PostComponent } from './post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { SharedModule } from '../_shared/material/shared.module';
 import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CreateUpdatePostComponent } from './create-update-post/create-update-po
   imports: [
     CommonModule,
     PostRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class PostModule { }

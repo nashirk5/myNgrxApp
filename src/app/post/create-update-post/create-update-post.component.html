@@ -1,1 +1,8 @@
-<p>create-update-post works!</p>
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Post Title</mat-label>
+        <input matInput [(ngModel)]="postTitle">
+    </mat-form-field>
+    <button mat-button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    <button mat-button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+</div>

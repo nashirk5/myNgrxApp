@@ -39,3 +39,17 @@ export const deletePostSuccess = createAction(
         post: PostInterface
     }>()
 );
+
+export const createPost = createAction(
+    `${prefix} Create Post`,
+    props<{
+        post: PostInterface
+    }>()
+);
+
+export const createPostSuccess = createAction(
+    `${createPost.type} Success`,
+    props<{
+        post: PostInterface
+    }>()
+);

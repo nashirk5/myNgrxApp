@@ -24,7 +24,7 @@ export class PostService {
   createPost(post: PostInterface) {
     this.posts = [...this.posts, post];
 
-    return of(this.posts);
+    return of(post);
   }
 
   updatePost(updatePost: PostInterface): Observable<PostInterface[]> {

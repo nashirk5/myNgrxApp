@@ -1,5 +1,4 @@
 <ng-container *ngIf="post$">
-    <h3>{{isPostEdit}}</h3>
     <button *ngIf="!isPostEdit" mat-raised-button color="accent" (click)="onShowAddEditPost()">Add Post</button>
 
     <ng-container *ngIf="isPostEdit">

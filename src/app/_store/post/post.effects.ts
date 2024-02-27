@@ -18,6 +18,14 @@ export class PostEffects {
         )
     )
 
+    createPost$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromPost.createPost.type),
+            switchMap(({ post }) => this.postSrv.createPost(post)),
+            map((post: PostInterface) => fromPost.createPostSuccess({ post }))
+        )
+    )
+
     deletePost$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromPost.deletePost.type),

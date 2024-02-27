@@ -48,6 +48,19 @@ export const reducer = createReducer<PostState>(
             isLoading: false,
             post: state.post.filter((p) => p.id !== post.id)
         }
+    }),
+    on(fromPost.createPost, (state) => {
+        return {
+            ...state,
+            isLoading: true
+        }
+    }),
+    on(fromPost.createPostSuccess, (state, { post }) => {
+        return {
+            ...state,
+            isLoading: false,
+            post: [...state.post, post]
+        }
     })
 )
 
