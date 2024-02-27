@@ -33,10 +33,10 @@ export class PostService {
     return of(this.posts);
   }
 
-  deletePost(postId: number): Observable<PostInterface[]> {
-    this.posts = this.posts.filter(data => data.id !== postId);
+  deletePost(post: PostInterface): Observable<PostInterface> {
+    this.posts = this.posts.filter(data => data.id !== post.id);
 
-    return of(this.posts);
+    return of(post).pipe(delay(1000));
   }
 
 }

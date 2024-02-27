@@ -12,6 +12,7 @@ import { SharedModule } from './_shared/material/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { PostStoreModule } from './_store/post/post-store.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreModule.forRoot(),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({}),
+    PostStoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

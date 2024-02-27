@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../_services/post.service';
 import { Observable } from 'rxjs';
 import { PostInterface } from '../_interface/post.interface';
+import { Store, select } from '@ngrx/store';
+import * as fromPost from '../_store/post';
 
 @Component({
   selector: 'app-post',
@@ -10,24 +11,28 @@ import { PostInterface } from '../_interface/post.interface';
 })
 export class PostComponent implements OnInit {
 
-  post$: Observable<PostInterface[]> | undefined;
-  isPostEdit: boolean = false;
+  post$!: Observable<PostInterface[]>;
+  isPostEdit!: boolean;
+  isLoading$!: Observable<boolean>;
 
-  constructor(private postSrv: PostService) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.post$ = this.postSrv.getPost();
-
-    setTimeout(() => {
-      this.post$ = this.postSrv.createPost({ id: 7, title: 'Test' })
-    }, 5000);
-
-    setTimeout(() => {
-      this.post$ = this.postSrv.updatePost({ id: 7, title: 'Update' })
-    }, 8000);
+    this.initDispatch();
+    this.initSubscriptions();
   }
 
-  deletePost(postId: number) {
-    this.post$ = this.postSrv.deletePost(postId);
+  onShowAddEditPost(): void {
+    this.store.dispatch(fromPost.showAddEditPost({ status: true }));
+  }
+
+  private initDispatch(): void {
+    this.store.dispatch(fromPost.getPost());
+  }
+
+  private initSubscriptions(): void {
+    this.post$ = this.store.pipe(select(fromPost.selectPostList));
+    this.isLoading$ = this.store.pipe(select(fromPost.selectPostIsLoading));
+    this.store.pipe(select(fromPost.selectPostAddEdit)).subscribe(data => this.isPostEdit = data);
   }
 }

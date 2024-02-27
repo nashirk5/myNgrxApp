@@ -1,11 +1,12 @@
 <ng-container *ngIf="post$">
-    <button *ngIf="!isPostEdit" mat-raised-button color="accent" (click)="isPostEdit = !isPostEdit">Accent</button>
+    <h3>{{isPostEdit}}</h3>
+    <button *ngIf="!isPostEdit" mat-raised-button color="accent" (click)="onShowAddEditPost()">Add Post</button>
 
     <ng-container *ngIf="isPostEdit">
         <app-create-update-post></app-create-update-post>
     </ng-container>
 
-    <app-post-list [postData]="post$ | async" (deletePostId)="deletePost($event)"></app-post-list>
+    <app-post-list [postData]="post$ | async"></app-post-list>
 </ng-container>
 
 <ng-container *ngIf="!post$">

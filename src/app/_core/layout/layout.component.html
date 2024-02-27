@@ -1,5 +1,9 @@
 <header><app-header></app-header></header>
 
+<ng-container *ngIf="isLoading$ | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-container>
+
 <section id="main_section" class="mar-t-5">
     <router-outlet></router-outlet>
 </section>

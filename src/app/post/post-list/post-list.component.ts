@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { PostInterface } from 'src/app/_interface/post.interface';
+import * as fromPost from '../../_store/post'
 
 @Component({
   selector: 'app-post-list',
@@ -9,11 +11,12 @@ import { PostInterface } from 'src/app/_interface/post.interface';
 export class PostListComponent {
 
   @Input() postData!: PostInterface[] | null;
-  @Output() deletePostId = new EventEmitter<number>();
+
+  constructor(private readonly store: Store) { }
 
   deletePost(post: PostInterface) {
     if (confirm(`Are you sure, do you want to delete ${post.title}`)) {
-      this.deletePostId.emit(post?.id);
+      this.store.dispatch(fromPost.deletePost({ post }))
     }
   }
 
